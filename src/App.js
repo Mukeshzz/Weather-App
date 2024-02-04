@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import Weather from './component/weather';
+
 
 function App() {
   return (
-    <div className="bg-blue-500 text-white p-4 text-center">
-            This is a blue box with white text.
-        </div>
+    <>
+     <div className="App">
+      <Weather/>
+    </div>
+    </>
   );
 }
 
