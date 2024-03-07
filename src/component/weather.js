@@ -32,8 +32,6 @@ const Weather = () => {
     setCity(inputCity);
   };
 
- 
-
   const getWeather = async () => {
     try {
       const response = await axios.get(API_URL, {
@@ -55,49 +53,52 @@ const Weather = () => {
   };
 
   return (
-    <div className="container mx-auto text-center bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 text-black min-h-screen">
-      <div className='text-5xl pt-4 font-serif text-white'>
-        <h1>Weather Application</h1>
-      </div>
-      <div className="flex items-center justify-center position-relative">
-        <div className="position-relative">
-          <input
-            type="text"
-            placeholder="Enter city"
-            className="p-2 border rounded mt-5"
-            value={city}
-            onChange={handleInputChange}
-          />
-          
-
-          <button
-            className="bg-white text-white p-2 5 2 5 m-4 rounded"
-            onClick={getWeather}
-            style={{ zIndex: 1 }}
-          >
-            <img src={searchIcon} alt="Search Icon" className="w-5 h-5" />
-          </button>
+    <div className="container flex justify-center text-center bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 text-black h-screen">
+      <div className='rounded shadow-lg w-full max-w-md'>
+        <div className="text-4xl pt-4 font-serif text-white mx-2">
+          <h1>Weather Application</h1>
         </div>
-      </div>
-
-      {weatherData && (
-        <div className="mt-4">
-          <h2 className="text-xl font-semibold">
-            {weatherData.name}, {weatherData.sys.country}
-          </h2>
-          <div className="flex items-center justify-center">
-            <img
-              src={weatherIcons[weatherData.weather[0].main]}
-              className="w-10 h-10" // Adjust the width and height as needed
-              alt="Weather Icon"
+        <div className="flex items-center justify-center mt-4">
+          <div>
+            <input
+              type="text"
+              placeholder="Enter city"
+              className="p-2 border rounded mt-5"
+              value={city}
+              onChange={handleInputChange}
             />
-            <p className="text-lg ml-2">{weatherData.weather[0].description}</p>
-          </div>
-          <p className="text-3xl font-bold">{weatherData.main.temp} °C</p>
-        </div>
-      )}
 
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+            <button
+              className="bg-white text-white p-2 5 2 5 m-4 rounded"
+              onClick={getWeather}
+              style={{ zIndex: 1 }}
+            >
+              <img src={searchIcon} alt="Search Icon" className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {weatherData && (
+          <div className="mt-20">
+            <h2 className="text-4xl text-slate-800 font-semibold">
+              {weatherData.name}, {weatherData.sys.country}
+            </h2>
+            <div className="flex items-center justify-center">
+              <img
+                src={weatherIcons[weatherData.weather[0].main]}
+                className="w-10 h-10" // Adjust the width and height as needed
+                alt="Weather Icon"
+              />
+              <p className="text-lg ml-2">
+                {weatherData.weather[0].description}
+              </p>
+            </div>
+            <p className="text-3xl font-bold">{weatherData.main.temp} °C</p>
+          </div>
+        )}
+
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+      </div>
     </div>
   );
 };
