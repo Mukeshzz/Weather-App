@@ -53,7 +53,7 @@ const Weather = () => {
   };
 
   return (
-    <div className="container flex justify-center text-center bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 text-black h-screen">
+    <div className="flex justify-center text-center bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 text-black h-screen w-screen">
       <div className='rounded shadow-lg w-full max-w-md'>
         <div className="text-4xl pt-4 font-serif text-white mx-2">
           <h1>Weather Application</h1>
@@ -79,11 +79,11 @@ const Weather = () => {
         </div>
 
         {weatherData && (
-          <div className="mt-20">
+          <div className="mt-20 hover:scale-110 transition transform duration-1000">
             <h2 className="text-4xl text-slate-800 font-semibold">
               {weatherData.name}, {weatherData.sys.country}
             </h2>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center ">
               <img
                 src={weatherIcons[weatherData.weather[0].main]}
                 className="w-10 h-10" // Adjust the width and height as needed
