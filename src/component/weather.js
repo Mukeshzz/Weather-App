@@ -37,7 +37,7 @@ const Weather = () => {
       const response = await axios.get(API_URL, {
         params: {
           q: city,
-          appid: API_KEY,
+          appid: API_KEY, 
           units: "metric",
         },
       });
@@ -53,54 +53,63 @@ const Weather = () => {
   };
 
   return (
-    <div className="flex justify-center text-center bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 text-black h-screen w-screen">
-      <div className='rounded shadow-lg w-full max-w-md'>
-        <div className="text-4xl pt-4 font-serif text-white mx-2">
-          <h1>Weather Application</h1>
+    <div className="flex justify-center items-center bg-gradient-to-b from-blue-500 via-blue-400 to-blue-300 text-black min-h-screen">
+      <div className="rounded-lg shadow-2xl bg-white p-8 w-full max-w-md transform hover:scale-105 transition-transform duration-300">
+        <div className="text-4xl font-serif text-gray-700 mb-4">
+          <h1>Weather App</h1>
         </div>
-        <div className="flex items-center justify-center mt-4">
-          <div>
-            <input
-              type="text"
-              placeholder="Enter city"
-              className="p-2 border rounded mt-5"
-              value={city}
-              onChange={handleInputChange}
-            />
-
-            <button
-              className="bg-white text-white p-2 5 2 5 m-4 rounded"
-              onClick={getWeather}
-              style={{ zIndex: 1 }}
-            >
-              <img src={searchIcon} alt="Search Icon" className="w-5 h-5" />
-            </button>
-          </div>
+        <div className="flex items-center justify-center mb-8">
+          <input
+            type="text"
+            placeholder="Enter city"
+            className="p-2 w-full border rounded-lg text-gray-700"
+            value={city}
+            onChange={handleInputChange}
+          />
+          <button
+            className="ml-4 p-2 bg-blue-500 rounded-full hover:bg-blue-700 transition-all duration-300"
+            onClick={getWeather}
+          >
+            <img src={searchIcon} alt="Search Icon" className="w-6 h-6" />
+          </button>
         </div>
 
         {weatherData && (
-          <div className="mt-20 hover:scale-110 transition transform duration-1000">
-            <h2 className="text-4xl text-slate-800 font-semibold">
+          <div className="text-center transition-transform transform hover:scale-110 duration-700">
+            <h2 className="text-3xl font-bold text-gray-800">
               {weatherData.name}, {weatherData.sys.country}
             </h2>
-            <div className="flex items-center justify-center ">
+            <div className="flex justify-center items-center mt-4 mb-4">
               <img
                 src={weatherIcons[weatherData.weather[0].main]}
-                className="w-10 h-10" // Adjust the width and height as needed
+                className="w-16 h-16"
                 alt="Weather Icon"
               />
-              <p className="text-lg ml-2">
+              <p className="text-xl text-gray-700 ml-4 capitalize">
                 {weatherData.weather[0].description}
               </p>
             </div>
-            <p className="text-3xl font-bold">{weatherData.main.temp} °C</p>
+            <p className="text-4xl font-bold text-blue-600">
+              {weatherData.main.temp} °C
+            </p>
+            <div className="mt-4">
+              <p className="text-gray-600">
+                Humidity: {weatherData.main.humidity}%
+              </p>
+              <p className="text-gray-600">
+                Wind: {weatherData.wind.speed} m/s
+              </p>
+            </div>
           </div>
         )}
 
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-lg mt-4">{error}</p>
+        )}
       </div>
     </div>
   );
 };
 
 export default Weather;
+
